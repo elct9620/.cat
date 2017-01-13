@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'cat/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = ".cat"
+  spec.name          = "cat_"
   spec.version       = Cat::VERSION
   spec.authors       = ["蒼時弦也"]
   spec.email         = ["elct9620@frost.tw"]

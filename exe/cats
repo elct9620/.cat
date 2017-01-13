@@ -2,9 +2,8 @@
 #
 require 'rack'
 require 'optparse'
-require 'codeme/manager/version'
-require 'codeme/manager/server'
-require 'codeme/manager'
+require 'cat/version'
+require 'cat/server'
 
 options = {
   Port: ENV['PORT'] || 3000,
