@@ -1,0 +1,40 @@
+#!/usr/bin/env ruby
+#
+require 'rack'
+require 'optparse'
+require 'codeme/manager/version'
+require 'codeme/manager/server'
+require 'codeme/manager'
+
+options = {
+  Port: ENV['PORT'] || 3000,
+  Host: "0.0.0.0",
+  AccessLog: []
+}
+
+OptionParser.new do |opts|
+  opts.on("-v", "--version", "Cat generation information") {
+    puts "cat(main)> Cat.size"
+    puts "cat(main)> #{Cat::VERSION}"
+    exit
+  }
+
+  opts.on("-h", "--help") {
+    puts opts
+    exit
+  }
+
+  opts.separator ""
+  opts.on("-s", "--server SERVER", "Set Cat Server engine") { |name| handlers.unshift(name.to_s) }
+  opts.on("-o", "--host HOST", "Set Cat Base address") { |host| options[:Host] = host.to_s; puts host }
+  opts.on("-p", "--port PORT", "Set Cat Tunnel number") { |port| options[:Port] = port.to_i }
+  opts.on("-F", "--file FILE", "Set Cat define file path") { |file| require File.join(Dir.pwd, file || "cat.rb") }
+
+  opts.parse! ARGV
+end
+
+begin
+  Rack::Handler.default.run Cat::Server, options
+rescue LoadError => e
+  STDERR.puts e
+end
