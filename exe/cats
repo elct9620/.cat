@@ -2,7 +2,7 @@
 #
 require 'rack'
 require 'optparse'
-require 'cat/version'
+require 'cat'
 require 'cat/server'
 
 options = {
@@ -27,12 +27,13 @@ OptionParser.new do |opts|
   opts.on("-s", "--server SERVER", "Set Cat Server engine") { |name| handlers.unshift(name.to_s) }
   opts.on("-o", "--host HOST", "Set Cat Base address") { |host| options[:Host] = host.to_s; puts host }
   opts.on("-p", "--port PORT", "Set Cat Tunnel number") { |port| options[:Port] = port.to_i }
-  opts.on("-F", "--file FILE", "Set Cat define file path") { |file| require File.join(Dir.pwd, file || "cat.rb") }
+  opts.on("-F", "--file FILE", "Set Cat define file path") { |file| Cat.config_file(file) }
 
   opts.parse! ARGV
 end
 
 begin
+  load Cat.config_file
   Rack::Handler.default.run Cat::Server, options
 rescue LoadError => e
   STDERR.puts e
