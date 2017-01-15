@@ -18,4 +18,8 @@ module Cat
   def self.to_html
     Cat.instance.to_html
   end
+
+  def self.to_css
+    Cat.instance.to_css
+  end
 end
