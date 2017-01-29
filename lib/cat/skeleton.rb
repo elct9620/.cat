@@ -25,7 +25,7 @@ module Cat
         %{
 html
   head
-    title Loading Car
+    title Loading Cat
     link(href="skin.css" rel="stylesheet")
   body
 #{cat}

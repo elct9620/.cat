@@ -8,6 +8,30 @@ module Cat
 body {
   background-color: $bgColor;
 }
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(720deg);
+  }
+}
+
+@keyframes speedup {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  75% {
+    transform: rotate(280deg)
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
       }
 
       @variables  = {

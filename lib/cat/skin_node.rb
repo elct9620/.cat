@@ -9,6 +9,7 @@ require 'cat/style/clip'
 require 'cat/style/position'
 require 'cat/style/offset'
 require 'cat/style/rounded'
+require 'cat/style/animation'
 
 module Cat
   class SkinNode
@@ -74,6 +75,11 @@ module Cat
 
     def rounded(top: nil, right: nil, bottom: nil, left: nil)
       @styles << Style::Rounded.new(top: top, right: right, bottom: bottom, left: left)
+      self
+    end
+
+    def animation(name = :rotating)
+      @styles << Style::Animation.new(name)
       self
     end
 
